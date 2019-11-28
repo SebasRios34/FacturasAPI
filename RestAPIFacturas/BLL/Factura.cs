@@ -106,8 +106,8 @@ namespace BLL
                     sql = "modificarFactura";
                 }
                 Parametros[] parametros = new Parametros[3];
-                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoCliente", SqlDbType.Int, codigoFactura);
-                DAL.DAL.agregarEstructuraParametros(ref parametros, 1, "@CodigoFactura", SqlDbType.Int, codigoCliente);
+                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoFactura", SqlDbType.Int, codigoCliente);
+                DAL.DAL.agregarEstructuraParametros(ref parametros, 1, "@CodigoCliente", SqlDbType.Int, codigoFactura);
                 DAL.DAL.agregarEstructuraParametros(ref parametros, 2, "@Fecha", SqlDbType.Date, fecha);
 
 

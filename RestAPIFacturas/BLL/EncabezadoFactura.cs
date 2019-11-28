@@ -61,7 +61,7 @@ namespace BLL
                     sql = "modificarEncabezadoFactura";
                 }
                 Parametros[] parametros = new Parametros[3];
-                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoCliente", SqlDbType.Int, codigoFactura);
+                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoFactura", SqlDbType.Int, codigoFactura);
                 DAL.DAL.agregarEstructuraParametros(ref parametros, 1, "@Direccion", SqlDbType.VarChar, direccion);
                 DAL.DAL.agregarEstructuraParametros(ref parametros, 2, "@CodigoPostal", SqlDbType.VarChar, codigoPostal);
 

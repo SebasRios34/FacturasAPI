@@ -18,7 +18,7 @@ namespace RestAPI.Controllers.FACTURASControllers
 
         public string Get(int id)
         {
-            return new Cliente().mostrarCodigoCliente();
+            return new Factura().mostrarCodigoFactura();
         }
 
         public string Post([FromBody]Factura factura)

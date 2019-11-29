@@ -72,7 +72,8 @@ namespace BLL
 
                 if (numError != 0)
                 {
-                    HttpContext.Current.Response.Redirect("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
+                    Console.WriteLine("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
+                    //HttpContext.Current.Response.Redirect("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
                     DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
                     return false;
                 }

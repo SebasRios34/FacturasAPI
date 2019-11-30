@@ -116,8 +116,38 @@ namespace BLL
 
                 if (numError != 0)
                 {
-                    Console.WriteLine("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
-                    //HttpContext.Current.Response.Redirect("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
+                    //Console.WriteLine("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
+                    HttpContext.Current.Response.Redirect("NUMERO DE ERROR: " + numError.ToString() + "MENSAJE DE ERROR: " + mensajeError);
+                    DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
+                    return false;
+                }
+                else
+                {
+                    DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
+                    return true;
+                }
+            }
+        }
+
+        public bool eliminarFactura(int codigoFactura)
+        {
+            conn = DAL.DAL.traerConexion("public", ref mensajeError, ref numError);
+
+            if (conn == null)
+            {
+                HttpContext.Current.Response.Redirect("Error.aspx?error=" + numError.ToString() + "&men=" + mensajeError);
+                return false;
+            }
+            else
+            {
+                sql = "eliminarFactura";
+                Parametros[] parametros = new Parametros[1];
+                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoFactura", SqlDbType.Int, CodigoFactura);
+                DAL.DAL.conectar(conn, ref mensajeError, ref numError);
+                DAL.DAL.ejecutarSqlCommandParametros(conn, sql, true, parametros, ref mensajeError, ref numError);
+                if (numError != 0)
+                {
+                    HttpContext.Current.Response.Redirect("Error.aspx?error=" + numError.ToString() + "&men=" + mensajeError);
                     DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
                     return false;
                 }

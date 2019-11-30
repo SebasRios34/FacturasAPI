@@ -15,5 +15,10 @@ namespace RestAPI.Controllers.FACTURASControllers
         {
             return detallesFactura.insertarDetallesFactura("Insertar") ? "Se añadieron con exito" : "No se logro guardar un nuevo usuario";
         }
+
+        public string Delete(int codigoFactura)
+        {
+            return new DetallesFactura().eliminarDetallesFactura(codigoFactura) ? "Se elimino los detalles de la factura con codigoCliente: " + codigoFactura : "No se elimino los detalles de la factura con el codigo: " + codigoFactura;
+        }
     }
 }

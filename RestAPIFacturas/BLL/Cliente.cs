@@ -139,5 +139,35 @@ namespace BLL
                 }
             }
         }
+
+        public bool eliminarCliente(int codigoCliente) 
+        {
+            conn = DAL.DAL.traerConexion("public", ref mensajeError, ref numError);
+
+            if (conn == null)
+            {
+                HttpContext.Current.Response.Redirect("Error.aspx?error=" + numError.ToString() + "&men=" + mensajeError);
+                return false;
+            }
+            else 
+            {
+                sql = "eliminarCliente";
+                Parametros[] parametros = new Parametros[1];
+                DAL.DAL.agregarEstructuraParametros(ref parametros, 0, "@CodigoCliente", SqlDbType.Int, codigoCliente);
+                DAL.DAL.conectar(conn, ref mensajeError, ref numError);
+                DAL.DAL.ejecutarSqlCommandParametros(conn, sql, true, parametros, ref mensajeError, ref numError);
+                if (numError != 0)
+                {
+                    HttpContext.Current.Response.Redirect("Error.aspx?error=" + numError.ToString() + "&men=" + mensajeError);
+                    DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
+                    return false;
+                }
+                else 
+                {
+                    DAL.DAL.desconectar(conn, ref mensajeError, ref numError);
+                    return true;
+                }
+            }
+        }
     }
 }
